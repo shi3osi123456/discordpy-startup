@@ -13,8 +13,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.content == ('/coin'):
-        mylist = [表,裏] 
-        await message.channel.send(randdom.choice(1))
+    if message.content.startswith('/join'):
+        role = discord.utils.get(message.guild.roles, name='member')
+        await message.author.add_roles(role)
+        reply = f'{message.author.mention} ようこそ！'
+        await message.channel.send(reply)
 
 bot.run(token)
